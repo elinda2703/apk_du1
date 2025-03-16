@@ -47,7 +47,7 @@ class Draw(QWidget):
         """
         self.shp_polygons.clear()
         
-        # Chatgpt + own line 47 to 69
+        # Chatgpt + own line 51 to 74
         if self.shp is None or self.shp.empty:
             QMessageBox.critical(None, "Error", "No geometry in shapefile")
             return
