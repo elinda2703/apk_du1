@@ -77,7 +77,7 @@ class Algorithms:
                 return -1
             
             # The ray goes trough both vertices of the edge, skip
-            if (p2y - p1y) == 0:
+            if p2y == 0 and p1y == 0:
                 continue
             
             # Compute intersection x coordinate
@@ -117,22 +117,16 @@ class Algorithms:
         n = len(pol)
         
         # Process all points
-        for i in range(n):
-            this_point = pol[i]
-            if i == (n-1):
-                next_point = pol[0]
-            else:
-                next_point = pol[i+1]
-            
-            if self.point_on_vertex(q,this_point):
+        for i in range(n):            
+            if self.point_on_vertex(q,pol[i]):
                 # Check if point is identical with the vertex
                 return -1
             
             # Half-plane test
-            det = self.get_point_location(q,this_point,next_point)
+            det = self.get_point_location(q,pol[i],pol[(i+1)%n])
             
             # Calulate angle omega
-            omega = self.calculate_angle(q,this_point,next_point)
+            omega = self.calculate_angle(q,pol[i],pol[(i+1)%n])
             
             
             if det == 0:
